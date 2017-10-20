@@ -25,6 +25,9 @@ Plugin 'dgryski/vim-godef'
 Plugin 'Blackrush/vim-gocode'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
+Plugin 'jnurmine/Zenburn'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'jistr/vim-nerdtree-tabs'
 
 call vundle#end()            " required
 
@@ -36,6 +39,17 @@ syntax on
 set nu
 let mapleader=","
 "set foldmethod=indent
+set laststatus=1
+set completeopt=longest,menu
+
+
+"复制粘贴
+vmap <C-c> "+y
+"vmap <C-v> "+p
+"vmap <C-x> "+d
+"set clipboard+=unnamed
+
+
 
 "方法折叠设置
 set foldmethod=marker
@@ -66,7 +80,10 @@ nnoremap <F10> :set mouse=a<CR>
 
 " YouCompleteMe
 "nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <F1> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nnoremap <F4> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 
 "Tagbar ctags
 nmap <F2> :TagbarToggle<CR>
@@ -76,18 +93,7 @@ set tags+=./tags;
 "nerdtree
 map <F1> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" let g:NERDTreeIndicatorMapCustom = { "securecrt无法正常显示这些符号，xshell可以
-    " \ "Modified"  : "m",
-    " \ "Staged"    : "s",
-    " \ "Untracked" : "u",
-    " \ "Renamed"   : "r",
-    " \ "Unmerged"  : "U",
-    " \ "Deleted"   : "d",
-    " \ "Dirty"     : "D",
-    " \ "Clean"     : "C",
-    " \ 'Ignored'   : 'I',
-    " \ "Unknown"   : "?"
-    " \ }
+map <F3> :NERDTreeFind<CR>
 
 "golang
 let g:go_fmt_command = "goimports"
@@ -118,6 +124,3 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "ctrlp
 "c-t 新的tab打开，c-v 新的split打开
-
-
-let g:airline_theme="luna"
