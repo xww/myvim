@@ -15,6 +15,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'luochen1990/rainbow'
 Plugin 'vim-syntastic/syntastic'
+"Plugin 'bling/vim-airline'
 
 Plugin 'honza/vim-snippets' "代码片段
 Plugin 'SirVer/ultisnips'
@@ -35,9 +36,18 @@ syntax on
 set nu
 let mapleader=","
 "set foldmethod=indent
+
+"方法折叠设置
 set foldmethod=marker
 set fdm=syntax
 set foldlevelstart=99
+
+"tab键设置
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
 "备忘
 "gt/gT tab切换
 
@@ -66,7 +76,7 @@ set tags+=./tags;
 "nerdtree
 map <F1> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" let g:NERDTreeIndicatorMapCustom = {
+" let g:NERDTreeIndicatorMapCustom = { "securecrt无法正常显示这些符号，xshell可以
     " \ "Modified"  : "m",
     " \ "Staged"    : "s",
     " \ "Untracked" : "u",
@@ -108,3 +118,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "ctrlp
 "c-t 新的tab打开，c-v 新的split打开
+
+
+let g:airline_theme="luna"
