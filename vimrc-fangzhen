@@ -1,0 +1,141 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+Plugin 'Valloric/YouCompleteMe'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+"
+" " Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+"
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'fatih/vim-go'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+autocmd BufReadPost *
+\ if line("'\"")>0&&line("'\"")<=line("$") |
+\ exe "normal g'\"" |
+\ endif
+
+" nerdtree configuration
+let NERDTreeWinPos='left'
+let NERDTreeWinSize=30
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+map <F2> :NERDTreeToggle<CR>
+
+" nerdtree git plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"tagbar configuration
+let g:tagbar_ctags_bin='ctags'  "path for ctags binary
+let g:tagbar_width=30           "width for tagbar window
+map <F3> :Tagbar<CR>
+
+"SimpylFold configuration
+autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+let g:SimpylFold_docstring_preview=0
+let g:SimpylFold_fold_docstring=0
+let g:SimpylFold_fold_import=0
+
+" powerline configuration
+let g:Powerline_symbols = 'unicode'
+set encoding=utf8
+set t_Co=256
+set laststatus=2
+
+"let Tlist_Auto_Open=1
+"set tags+=/usr/lib/python2.7/tags
+set tags=tags;
+"set autochdir
+
+" YouCompleteMe configuration
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+" " Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" All of your Plugins must be added before the following line
+
+let g:go_fmt_command = "goimports"
+"let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+let g:syntastic_go_checkers = ['golint']
+"
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+set number
+syntax on
+set backspace=indent,eol,start
+

@@ -46,6 +46,12 @@ set laststatus=1
 set completeopt=longest,menu
 
 
+"复制粘贴
+vmap <C-c> "+y
+"vmap <C-v> "+p
+"vmap <C-x> "+d
+"set clipboard+=unnamed
+
 
 
 "方法折叠设置
@@ -59,6 +65,10 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+"备忘
+"gt/gT tab切换
+
+
 "分屏切换重映射
 nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-j> <c-w>j
@@ -69,14 +79,8 @@ nnoremap <silent> <C-l> <c-w>l
 "set tags+=/root/go1.8/src/tags
 map <c-]> g<c-]> 
 set mouse=a
-nnoremap <F4> :set mouse=v<CR>
-nnoremap <F5> :set mouse=a<CR>
-
-"复制粘贴
-vmap <C-c> "+y
-"vmap <C-v> "+p
-"vmap <C-x> "+d
-"set clipboard+=unnamed
+nnoremap <F9> :set mouse=v<CR>
+nnoremap <F10> :set mouse=a<CR>
 
 
 " YouCompleteMe http://howiefh.github.io/2015/05/22/vim-install-youcompleteme-plugin/
@@ -95,23 +99,6 @@ set tags+=./tags;
 map <F1> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <F3> :NERDTreeFind<CR>
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : '▲',
-    \ "Staged"    : '†',
-    \ "Untracked" : '★',
-    \ "Renamed"   : '→',
-    \ "Unmerged"  : '=',
-    \ "Deleted"   : 'X',
-    \ "Dirty"     : 'x',
-    \ "Clean"     : '√',
-    \ "Unknown"   : '?'
-    \ }
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-let g:NERDTreeHidden=1 "显示隐藏文件
-let g:NERDTreeShowLineNumbers=1
-let g:NERDTreeWinPos='left'
-let g:NERDTreeSize=30
 
 "golang
 let g:go_fmt_command = "goimports"
@@ -162,17 +149,3 @@ let g:molokai_original = 1
 
 "ctrlp
 "c-t 新的tab打开，c-v 新的split打开
-
-"列操作
-"删除列
-"1.光标定位到要操作的地方。
-"2.CTRL+v 进入“可视 块”模式，选取这一列操作多少行。
-"3.d 删除。
-" 插入列
-" 插入操作的话知识稍有区别。例如我们在每一行前都插入"() "：
-" 1.光标定位到要操作的地方。
-" 2.CTRL+v 进入“可视 块”模式，选取这一列操作多少行。
-" 3.SHIFT+i(I) 输入要插入的内容。
-" 4.ESC 按两次，会在每行的选定的区域出现插入的内容。
-
-" 69 "gt/gT tab切换
